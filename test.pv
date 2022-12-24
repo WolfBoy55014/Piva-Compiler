@@ -1,0 +1,14 @@
+    # Comments work in their own line
+int y = 9   # Or inline!
+
+
+    # An Example of how you DON'T need to close Parentheses
+int x = (6 + (6 + (6 + (6 + (6 + (6 + (6 + (6 + (6 + (6 + (6 + (6
+
+out (1 + ( x + y    # Another Example
+
+out *(x)
+    # ^ |This is printed without returning
+
+out (y)
+   # ^ |While this is with return
