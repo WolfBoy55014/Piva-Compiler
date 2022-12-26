@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17339c35-cfb4-485c-a5ac-b945219cf8e9" name="Changes" comment="Working with Integers and Printing # Comments Too!">
-      <change afterPath="$PROJECT_DIR$/leng.pv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/CodeWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/wolfboy/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/wolfboy/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/wolfboy/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.pv" beforeDir="false" afterPath="$PROJECT_DIR$/test.pv" afterDir="false" />
-    </list>
+    <list default="true" id="17339c35-cfb4-485c-a5ac-b945219cf8e9" name="Changes" comment="Finished first Go!" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +114,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671902104878</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Finished first Go!">
+      <created>1672089505234</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672089505234</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Finished first Go!">
+      <created>1672089539298</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672089539298</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,6 +145,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Working with Integers and Printing # Comments Too!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working with Integers and Printing # Comments Too!" />
+    <MESSAGE value="Finished first Go!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished first Go!" />
   </component>
 </project>
