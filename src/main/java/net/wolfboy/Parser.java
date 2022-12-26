@@ -13,12 +13,8 @@ public class Parser {
 
         for (int i = 0; i < tokens.size(); i++) {
             switch (tokens.get(i).type) {
-                case "Declarator" :
-                    Declarator(i, lineNumber);
-                    break;
-                case "Function" :
-                    Function(i, lineNumber);
-                    break;
+                case "Declarator" -> Declarator(i, lineNumber);
+                case "Function" -> Function(i, lineNumber);
             }
         }
     }

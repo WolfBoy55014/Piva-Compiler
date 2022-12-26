@@ -35,32 +35,72 @@ public class Main {
         String name = inputScanner.nextLine();
         String currentLineRead = "";
         Path programPath = Path.of(name + ".pv");
-        long count = Files.lines(programPath).count();
+        long count = 0;
 
-        // Setting up Loading Bar
-        ProgressBar pb = new ProgressBar("", count * 2, 1);
+
 
 
         // Running and making Tokens
-        for (long i = 0; i < count; i++) {
-            try (Stream<String> lines = Files.lines(programPath)) {
-                currentLineRead = lines.skip(i).findFirst().get();
-            } catch (IOException e) {
-                System.out.println(e);
+        if (Files.exists(programPath)) {
+
+            count = Files.lines(programPath).count();
+
+            for (long i = 0; i < count; i++) {
+
+                try (Stream<String> lines = Files.lines(programPath)) {
+
+                    currentLineRead = lines.skip(i).findFirst().get();
+
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+
+                // Lexing
+                Tokenizer.tokenizer(currentLineRead);
+
+                // Parsing
+                Parser.Parser(i + 1);
+
+                // Updating Loading Bar
+                progressPercentage((int) i, (int) count);
+
             }
-            pb.setExtraMessage("Lexing");
-            Tokenizer.tokenizer(currentLineRead);
-            pb.step();
-            // Parsing
-            pb.setExtraMessage("Parsing");
-            Parser.Parser(i + 1);
-            pb.stepTo(i * 2);
+            if (!Parser.hasException) {
+                CodeWriter.CodeWriter(name);
+            }
+        } else {
+            System.out.println(Main.ANSI_RED + "Exception; Can't Find File " + Main.ANSI_RESET + Main.ANSI_PURPLE + "File: " + programPath + Main.ANSI_RESET);
         }
-        pb.setExtraMessage("Finishing");
-        pb.stepTo(count * 2);
-        pb.close();
-        if (!Parser.hasException) {
-            CodeWriter.CodeWriter(name);
+    }
+
+
+    public static void progressPercentage(int done, int total) {
+        int size = 50;
+        String iconLeftBoundary = "[";
+        String iconDone = "=";
+        String iconRemain = ".";
+        String iconRightBoundary = "]";
+
+        if (done > total) {
+            throw new IllegalArgumentException();
+        }
+        int donePercents = (100 * done) / total;
+        int doneLength = size * donePercents / 100;
+
+        StringBuilder bar = new StringBuilder(iconLeftBoundary);
+        for (int i = 0; i < size; i++) {
+            if (i < doneLength) {
+                bar.append(iconDone);
+            } else {
+                bar.append(iconRemain);
+            }
+        }
+        bar.append(iconRightBoundary);
+
+        System.out.print(ANSI_CYAN + "\r" + bar + " " + donePercents + "%" + ANSI_RESET);
+
+        if (done == total) {
+            System.out.print("\n");
         }
     }
 }

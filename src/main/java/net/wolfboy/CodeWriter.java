@@ -44,7 +44,7 @@ public class CodeWriter {
         String os = System.getProperty("os.name");
 
         // Printing both points
-        System.out.println(Main.ANSI_PURPLE + workingDirectory + "\\" + name + ".pv" + " | " + Main.ANSI_CYAN + os + Main.ANSI_RESET);
+        System.out.println(Main.ANSI_PURPLE + " | " + Main.ANSI_CYAN + os + Main.ANSI_RESET);
 
         // Compiling Java
         Runtime.getRuntime().exec("javac " + workingDirectory + "\\" + name + ".java");
@@ -66,12 +66,16 @@ public class CodeWriter {
         InputStream inputStream = process.getInputStream();
         InputStream errorStream = process.getErrorStream();
 
+        System.out.println("----------------------------------------------------------------------");
+        System.out.println();
+
         printStream(inputStream);
         printStream(errorStream);
 
         // Exiting
         process.waitFor();
         int returnValue = process.exitValue();
+        System.out.println("----------------------------------------------------------------------");
         System.out.println(Main.ANSI_PURPLE + "Exit - " + Main.ANSI_CYAN + returnValue);
 
         outputStream.flush();

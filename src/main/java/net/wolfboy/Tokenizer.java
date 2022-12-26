@@ -14,6 +14,7 @@ public class Tokenizer {
         tokenTypes.add(new TokenType("int", "Declarator", "\\W*((?i)int(?-i))\\W*"));
         tokenTypes.add(new TokenType("float", "Declarator", "\\W*((?i)float(?-i))\\W*"));
         tokenTypes.add(new TokenType("out", "Function", "\\W*((?i)out(?-i))\\W*"));
+        tokenTypes.add(new TokenType("in", "Function", "\\W*((?i)in(?-i))\\W*"));
         tokenTypes.add(new TokenType("integer", "Constant", "\\d+"));
         tokenTypes.add(new TokenType("operator", "Operator", "[=+/*-]"));
         tokenTypes.add(new TokenType("comment", "Comment", "[#]"));
