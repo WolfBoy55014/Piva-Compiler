@@ -1,16 +1,15 @@
 package net.wolfboy;
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import org.json.simple.JSONObject;
 
 
 public class Parser {
-    public static JSONObject file = new JSONObject();
+    public static List<String> file = new ArrayList<String>();
     static List<Token> tokens = Tokenizer.tokens;
+    static boolean hasException = false;
     public static void Parser(long lineNumber) {
-
 
         for (int i = 0; i < tokens.size(); i++) {
             switch (tokens.get(i).type) {
@@ -21,7 +20,6 @@ public class Parser {
                     Function(i, lineNumber);
                     break;
             }
-
         }
     }
 
@@ -36,54 +34,8 @@ public class Parser {
     static void Function(int i, long lineNumber) {
         switch (tokens.get(i).value) {
             case "out":
-                int p = 0;
-                String output = "";
-                if (i + 1 < tokens.size()) {
-                    if (Objects.equals(tokens.get(i + 1).value, "(") | Objects.equals(tokens.get(i + 1).value, "*")) {
-                        if (Objects.equals(tokens.get(i + 1).value, "(")) {
-                            output = "System.out.println(";
-                        } else if (Objects.equals(tokens.get(i + 1).value, "*")) {
-                            if (Objects.equals(tokens.get(i + 2).value, "(")) {
-                                output = "System.out.print(";
-                                i ++;
-                            } else {
-                                System.out.println(Main.ANSI_RED + "Exception; Invalid Output Function " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
-                                break;
-                            }
-                        }
-                        p--;
-                        i++;
-                        for (int ii = i; ii + 1 < tokens.size(); ) {
-                            if (ii + 1 < tokens.size()) {
-                                output = output.concat(tokens.get(ii + 1).value);
-                                if (Objects.equals(tokens.get(ii + 1).value, ")")) {
-                                    p++;
-                                } else if (Objects.equals(tokens.get(ii + 1).value, "(")) {
-                                    p--;
-                                }
-                                ii++;
-                            }
-                        }
-                        while (p != 0) {
-                            if (p < 0) {
-                                output = output.concat(")");
-                                p++;
-                            } else {
-                                System.out.println(Main.ANSI_RED + "Exception; Extra or Trailing Parentheses " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
-                                break;
-                            }
-                        }
-                        output = output.concat(";");
+                OutFunction(i, lineNumber);
 
-                        // Outputting Result
-                        System.out.println(output);
-                    } else {
-                        System.out.println(Main.ANSI_RED + "Exception; Empty Output Function " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
-                        break;
-                    }
-                } else {
-                    System.out.println(Main.ANSI_RED + "Exception; Empty Output Function " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
-                }
         }
     }
     static void Declarator(int i, long lineNumber) {
@@ -115,16 +67,19 @@ public class Parser {
                                 ii += 2;
                             } else {
                                 System.out.println(Main.ANSI_RED + "Exception; Trailing Operator " + Main.ANSI_RESET + Main.ANSI_PURPLE  + "Line: " + lineNumber + Main.ANSI_RESET);
+                                hasException = true;
                                 break;
                             }
                         } else {
                             System.out.println(Main.ANSI_RED + "Exception; Not an Operator " + Main.ANSI_RESET + Main.ANSI_PURPLE  + "Line: " + lineNumber + Main.ANSI_RESET);
+                            hasException = true;
                             break;
                         }
                     }
                 }
             } else {
                 System.out.println(Main.ANSI_RED + "Exception; Not an Equals Sign " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
+                hasException = true;
             }
         }
         while (p != 0) {
@@ -133,10 +88,74 @@ public class Parser {
                 p++;
             } else {
                 System.out.println(Main.ANSI_RED + "Exception; Extra or Trailing Parentheses " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
+                hasException = true;
                 break;
             }
         }
         output = output.concat(";");
-        System.out.println(output);
+
+        // Outputting result
+        file.add(output);
+    }
+
+    static void OutFunction(int i, long lineNumber) {
+        int p = 0;
+        String output = "";
+        out:
+        if (i + 1 < tokens.size()) {
+            if (Objects.equals(tokens.get(i + 1).value, "(") | Objects.equals(tokens.get(i + 1).value, "*")) {
+                if (Objects.equals(tokens.get(i + 1).value, "(")) {
+                    output = "System.out.println(";
+                } else if (Objects.equals(tokens.get(i + 1).value, "*")) {
+                    if (tokens.size() > i + 2) {
+                        if (Objects.equals(tokens.get(i + 2).value, "(")) {
+                            output = "System.out.print(";
+                            i++;
+                        } else {
+                            System.out.println(Main.ANSI_RED + "Exception; Invalid Output Syntax " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
+                            hasException = true;
+                            break out;
+                        }
+                    } else {
+                        System.out.println(Main.ANSI_RED + "Exception; Invalid Output Syntax " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
+                        hasException = true;
+                        break out;
+                    }
+                }
+                p--;
+                i++;
+                for (int ii = i; ii + 1 < tokens.size(); ) {
+                    if (ii + 1 < tokens.size()) {
+                        output = output.concat(tokens.get(ii + 1).value);
+                        if (Objects.equals(tokens.get(ii + 1).value, ")")) {
+                            p++;
+                        } else if (Objects.equals(tokens.get(ii + 1).value, "(")) {
+                            p--;
+                        }
+                        ii++;
+                    }
+                }
+                while (p != 0) {
+                    if (p < 0) {
+                        output = output.concat(")");
+                        p++;
+                    } else {
+                        System.out.println(Main.ANSI_RED + "Exception; Extra or Trailing Parentheses " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
+                        hasException = true;
+                        break;
+                    }
+                }
+                output = output.concat(";");
+
+                // Outputting Result
+                file.add(output);
+            } else {
+                System.out.println(Main.ANSI_RED + "Exception; Empty Output Function " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
+                hasException = true;
+            }
+        } else {
+            System.out.println(Main.ANSI_RED + "Exception; Empty Output Function " + Main.ANSI_RESET + Main.ANSI_PURPLE + "Line: " + lineNumber + Main.ANSI_RESET);
+            hasException = true;
+        }
     }
 }

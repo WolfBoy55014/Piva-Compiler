@@ -29,7 +29,7 @@ public class Tokenizer {
                 TokenType currentToken = tokenTypes.get(i);
                 if (Pattern.matches(currentToken.regex, a)) {
                     //System.out.println("[" + currentToken.type + " : " + a + "]");
-                    if (currentToken.type == "Comment") {
+                    if (Objects.equals(currentToken.type, "Comment")) {
                         break outerLoop;
                     } else {
                         tokens.add(new Token(a, currentToken.type));
@@ -86,8 +86,3 @@ class Token {
         this.type = type;
     }
 }
-
-
-
-
-

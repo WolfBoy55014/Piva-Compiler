@@ -4,17 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17339c35-cfb4-485c-a5ac-b945219cf8e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Parser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Tokenizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.pv" afterDir="false" />
+    <list default="true" id="17339c35-cfb4-485c-a5ac-b945219cf8e9" name="Changes" comment="Working with Integers and Printing # Comments Too!">
+      <change afterPath="$PROJECT_DIR$/leng.pv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/CodeWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/wolfboy/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/wolfboy/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/wolfboy/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/wolfboy/Tokenizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.pv" beforeDir="false" afterPath="$PROJECT_DIR$/test.pv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +109,21 @@
       <option name="presentableId" value="Default" />
       <updated>1671058035163</updated>
     </task>
+    <task id="LOCAL-00001" summary="Working with Integers and Printing # Comments Too!">
+      <created>1671901928491</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671901928491</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Working with Integers and Printing # Comments Too!">
+      <created>1671902104878</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671902104878</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,5 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Working with Integers and Printing # Comments Too!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working with Integers and Printing # Comments Too!" />
   </component>
 </project>
