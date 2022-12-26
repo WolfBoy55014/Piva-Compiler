@@ -61,10 +61,11 @@ public class Main {
                 // Parsing
                 Parser.Parser(i + 1);
 
-                // Updating Loading Bar
+                // Updating Progress Bar
                 progressPercentage((int) i, (int) count);
 
             }
+            progressPercentage((int) count, (int) count);
             if (!Parser.hasException) {
                 CodeWriter.CodeWriter(name);
             }
@@ -99,8 +100,5 @@ public class Main {
 
         System.out.print(ANSI_CYAN + "\r" + bar + " " + donePercents + "%" + ANSI_RESET);
 
-        if (done == total) {
-            System.out.print("\n");
-        }
     }
 }
