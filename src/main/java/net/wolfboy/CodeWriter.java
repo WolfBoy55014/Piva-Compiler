@@ -1,6 +1,7 @@
 package net.wolfboy;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 public class CodeWriter {
@@ -46,45 +47,37 @@ public class CodeWriter {
         // Printing both points
         System.out.println(Main.ANSI_PURPLE + " | " + Main.ANSI_CYAN + os + Main.ANSI_RESET);
 
+
         // Compiling Java
-        Runtime.getRuntime().exec("javac " + workingDirectory + "\\" + name + ".java");
+        //Runtime.getRuntime().exec("javac " + workingDirectory + "\\" + name + ".java");
         System.out.println("Compiled successfully");
 
         String[] commands;
 
         // Executing Java
         if (isWindows) {
-            commands = new String[]{"cmd.exe", "/c", "java " + workingDirectory + "\\" + name + ".java"};
+            commands = new String[]{"cmd", "start cmd /c \"runWin.bat " + workingDirectory + " " + name + "\""};
         } else {
             commands = new String[]{"sh", "-c", "java " + workingDirectory + "\\" + name + ".java"};
         }
 
         Process process = Runtime.getRuntime().exec(commands, null, workingDirectory);
 
-        // Outputting result
-        OutputStream outputStream = process.getOutputStream();
-        InputStream inputStream = process.getInputStream();
+        // Outputting Errors
         InputStream errorStream = process.getErrorStream();
 
-        System.out.println("----------------------------------------------------------------------");
         System.out.println();
 
-        printStream(inputStream);
         printStream(errorStream);
+
 
         // Exiting
         process.waitFor();
         int returnValue = process.exitValue();
-        System.out.println("----------------------------------------------------------------------");
         System.out.println(Main.ANSI_PURPLE + "Exit - " + Main.ANSI_CYAN + returnValue);
-
-        outputStream.flush();
-        outputStream.close();
 
         // Deleting Java files
         File javaFiles = new File(name + ".java");
-        javaFiles.delete();
-        javaFiles = new File(name + ".class");
         javaFiles.delete();
     }
 
